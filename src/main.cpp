@@ -14,7 +14,7 @@ int test_2_1_1() {
 	vector<int> array;
 	int read = XYReader::read_array("src/data/sorted-array.txt", array);
 
-	cout << "orig array:" << endl;
+	cout << " ---> orig array" << endl;
 	for (int i = 0; i < array.size(); ++i) {
 		cout << array[i] << " ";
 	}
