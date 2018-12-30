@@ -36,11 +36,11 @@ int XYArray::binary_sort(vector<int>& array, int start, int end) {
 
 	array[j] = pivot;
 	
-	cout << "binary sort: pivot\t" << pivot << endl;
-	for (int i = 0; i < array.size(); ++i) {
-		cout << array[i] << " ";
-	}
-	cout << endl;
+	//cout << "binary sort: pivot\t" << pivot << endl;
+	//for (int i = 0; i < array.size(); ++i) {
+	//	cout << array[i] << " ";
+	//}
+	//cout << endl;
 
 	binary_sort(array, start, j - 1);
 	binary_sort(array, j, end);
@@ -73,6 +73,23 @@ int XYArray::remove_array_duplicates(vector<int>& array) {
 
 	sort(array);
 
+	int current = array[0];
+	//cout << "remove_array_duplicates current\t" << current << endl << endl;
+	for (int i = 1; i < array.size(); ++i) {
+		//cout << "current\t" << array[i] << endl;
+		if (current == array[i]) {
+			array.erase(array.begin() + i);
+			i--;
+		} else {
+			current = array[i];
+		}
+	}
+	
+	cout << endl << "remove_array_duplicates result" << endl;
+	for (int i = 0; i < array.size(); ++i) {
+		cout << array[i] << " ";
+	}
+	cout << endl << endl;
 
 	return 0;
 }
