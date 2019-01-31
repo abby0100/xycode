@@ -21,6 +21,9 @@ int mylog(string info) {
 
 void print_array() {
 
+	// sleep
+	sleep(1);
+
 	for(int i = 0; i < N; ++i){
 		if( i == 0 || i == 3 || i == 6) {
 			cout << "-------------------" << endl;
@@ -38,9 +41,6 @@ void print_array() {
 			}
 		}
 		cout << endl;
-
-		// sleep
-		//sleep(1);
 	}
 	cout << endl;
 }
@@ -207,7 +207,7 @@ int solve_one(int i, int j) {
 		return -1;
 	} else {
 		while(number > 0) {
-			print_sequence();
+			//print_sequence();
 
 			number--;
 			array[i][j] = sequence[i][j][number];
@@ -220,7 +220,6 @@ int solve_one(int i, int j) {
 
 				// sleep
 				usleep(500);
-				//cin.get();
 			} else {
 				return 0;
 			}
