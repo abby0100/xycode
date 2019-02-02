@@ -22,7 +22,9 @@ int mylog(string info) {
 void print_array() {
 
 	// sleep
-	sleep(1);
+	usleep(1000);
+	// clean screen
+	cout << "\033[2J \033[0m" << endl;
 
 	for(int i = 0; i < N; ++i){
 		if( i == 0 || i == 3 || i == 6) {
@@ -53,9 +55,6 @@ void print_sequence() {
 				for(int k = 0; k < N; ++k) {
 					if(sequence[i][j][k] > 0) {
 						cout << sequence[i][j][k] << " ";
-//					} else {
-//						cout << endl;
-//						break;
 					}
 				}
 				cout << endl;
@@ -194,14 +193,12 @@ int solve_one(int i, int j) {
 			sequence[i][j][n] = 0;
 			sequence[i][j][number] = temp;
 
-			//cout << sequence[number] << " ";
 			number++;
 		}
 	}
-	cout << endl;
 
 	if(number <= 0) {
-		cout << "Not right! Reset array[" << i << "][" << j << "]" << endl;
+		//cout << "Not right! Reset array[" << i << "][" << j << "]" << endl;
 		array[i][j] = UNSOLVED;
 		print_array();
 		return -1;
@@ -213,13 +210,10 @@ int solve_one(int i, int j) {
 			array[i][j] = sequence[i][j][number];
 
 			if(solve_sudoku() == -1) {
-				cout << "array[" << i << "][" << j << "] try " << sequence[i][j][number] << " failed! Try next?" << endl;
+				//cout << "array[" << i << "][" << j << "] try " << sequence[i][j][number] << " failed! Try next?" << endl;
 				sequence[i][j][number] = 0;
 				array[i][j] = UNSOLVED;
 				print_array();
-
-				// sleep
-				usleep(500);
 			} else {
 				return 0;
 			}
@@ -232,7 +226,7 @@ int solve_one(int i, int j) {
 
 int solve_sudoku() {
 
-	mylog("solve sudoku");
+	//mylog("solve sudoku");
 
 	int result;
 	for(int i = 0; i < N; ++i) {
@@ -262,9 +256,10 @@ int main(int argc, char** argv) {
 
 	generate_sudoku();
 
+	cout << "[+] solve sudoku" << endl;
 	int result = solve_sudoku();
 	if(result == 0) {
-		cout << "Congratulations, you solved the sudoku!" << endl;
 		print_array();
+		cout << "Congratulations, you solved the sudoku!" << endl;
 	}
 }
