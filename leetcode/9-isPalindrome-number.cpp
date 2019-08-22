@@ -1,25 +1,32 @@
 #include <iostream>
 #include <string>
-#include <vector>
 
 using namespace std;
 
 class Solution {
 public:
-	string int2Roman(int num) {
-		string ret = "";
-		return ret;
+	bool isPalindrome(int x) {
+		if(x < 0) {
+			return false;
+		}
+		int value = x;
+		long long y = 0;
+		while (value) {
+			y = y * 10 + value % 10;
+			value /= 10;
+		}
+		return (y == x) ? true : false;
 	}
 };
 
 int main(int argc, char **argv) {
 
-	int test = 13;
+	int test = 42;
 	cout << "[+] test:\t" << test << endl;
 
 	Solution *s = new Solution();
 
-	string result = s->int2Roman(test);
+	bool result = s->isPalindrome(test);
 	cout << "[+] result:\t" << result << endl;
 
 	return 0;

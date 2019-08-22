@@ -2,6 +2,7 @@
 
 source=$1
 target=xy
+shift=$2
 
 echo -e "[+] clean"
 	rm $target
@@ -10,4 +11,4 @@ echo -e "[+] compile"
 	g++ -std=c++1y $source -o $target
 
 echo -e "[+] run"
-	./$target
+	./$target $shift
