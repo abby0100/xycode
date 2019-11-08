@@ -53,35 +53,50 @@ void freeList(ListNode *head) {
 
 class Solution {
 public:
-	bool isValidSudoku(vector<vector<char>>& board) {
-		if(board.empty())
-			return true;
-		
+	int searchInsert(vector<int>& nums, int target) {
+		int ret = 0;
+		if(nums.empty())
+			return ret;
+		for(int i = 0; i < nums.size(); ++i) {
+			if(target <= nums[i]) {
+				return i;
+			}
+			if(i == nums.size() - 1) {
+				return nums.size();
+			}
+		}
+		return ret;
 	}
 };
 
 int main(int argc, char **argv) {
 
-	vector<vector<char>> board = {
-		'5', '3', '.',		'.', '7', '.',		'.', '.', '.',
-		'6', '.', '.',		'1', '9', '5',		'.', '.', '.',
-		'.', '9', '8',		'.', '.', '.',		'.', '6', '.',
-
-		'8', '.', '.',		'.', '6', '.',		'.', '.', '3',
-		'4', '.', '.',		'8', '.', '3',		'.', '.', '1',
-		'7', '.', '.',		'.', '2', '.',		'.', '.', '6',
-
-		'.', '6', '.',		'.', '.', '.',		'2', '8', '.',
-		'.', '.', '.',		'4', '1', '9',		'.', '.', '5',
-		'.', '.', '.',		'.', '8', '.',		'.', '7', '9',
-	};
-	//printVector()
-
-
-
 	Solution *s = new Solution();
-	bool result = s->isValidSudoku(board);
-	cout << "[+] Result:\t" << result << endl;
+
+	{
+		vector<int> vec = {1, 3, 5, 6};
+		int target = 5;
+		int result = s->searchInsert(vec, target);
+		cout << "[+] Result:\t" << result << endl;
+	}
+	{
+		vector<int> vec = {1, 3, 5, 6};
+		int target = 2;
+		int result = s->searchInsert(vec, target);
+		cout << "[+] Result:\t" << result << endl;
+	}
+	{
+		vector<int> vec = {1, 3, 5, 6};
+		int target = 7;
+		int result = s->searchInsert(vec, target);
+		cout << "[+] Result:\t" << result << endl;
+	}
+	{
+		vector<int> vec = {1, 3, 5, 6};
+		int target = 0;
+		int result = s->searchInsert(vec, target);
+		cout << "[+] Result:\t" << result << endl;
+	}
 
 	delete s;
 	return 0;

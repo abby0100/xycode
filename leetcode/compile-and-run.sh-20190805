@@ -8,6 +8,7 @@ echo -e "[+] clean"
 	rm $target
 
 echo -e "[+] compile"
+	#g++ -std=c++1y $source -o $target
 	g++ -std=c++1y -fsanitize=address $source -o $target
 
 echo -e "[+] run"

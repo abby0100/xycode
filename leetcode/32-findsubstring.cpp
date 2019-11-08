@@ -53,35 +53,36 @@ void freeList(ListNode *head) {
 
 class Solution {
 public:
-	bool isValidSudoku(vector<vector<char>>& board) {
-		if(board.empty())
-			return true;
-		
+	vector<string> findSubstring(string str, vector<string> words) {
+		vector<string> ret;
+		if(str.empty() || words.empty())
+			return ret;
+
+		cout << __func__ << " str:\t" << str << endl;
+		cout << __func__ << " words:\t" << words[0] << endl;
+		cout << __func__ << " words:\t" << words[1] << endl;
+
+		char *cptr = str;
+		for(int i = 0; i < str.size() - 1; ++i) {
+			while(*cptr) {
+				for(int j = 0; j < words[0 ].size() - 1; ++j) {
+					if(*cptr == words[k][j]) 
+				}
+			}
+		}
+		return ret;
 	}
 };
 
 int main(int argc, char **argv) {
 
-	vector<vector<char>> board = {
-		'5', '3', '.',		'.', '7', '.',		'.', '.', '.',
-		'6', '.', '.',		'1', '9', '5',		'.', '.', '.',
-		'.', '9', '8',		'.', '.', '.',		'.', '6', '.',
-
-		'8', '.', '.',		'.', '6', '.',		'.', '.', '3',
-		'4', '.', '.',		'8', '.', '3',		'.', '.', '1',
-		'7', '.', '.',		'.', '2', '.',		'.', '.', '6',
-
-		'.', '6', '.',		'.', '.', '.',		'2', '8', '.',
-		'.', '.', '.',		'4', '1', '9',		'.', '.', '5',
-		'.', '.', '.',		'.', '8', '.',		'.', '7', '9',
-	};
-	//printVector()
-
-
+	string str = "barfoothefoobarman";
+	vector<string> words;
+	words.push_back("foo");
+	words.push_back("bar");
 
 	Solution *s = new Solution();
-	bool result = s->isValidSudoku(board);
-	cout << "[+] Result:\t" << result << endl;
+	vector<string> result = s->findSubstring(str, words);
 
 	delete s;
 	return 0;

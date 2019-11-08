@@ -1,5 +1,7 @@
 #include <algorithm>
+#include <bitset>
 #include <iostream>
+#include <iomanip>
 #include <stack>
 #include <string>
 #include <vector>
@@ -53,35 +55,38 @@ void freeList(ListNode *head) {
 
 class Solution {
 public:
-	bool isValidSudoku(vector<vector<char>>& board) {
-		if(board.empty())
-			return true;
-		
+	int divide(int dividend, int divisor) {
+		int n1 = 0;
+		int n2 = 0;
+		if(divisor) {
+			for(int i = 0; i < 30; ++i) {
+				if(dividend & 0x01 == 1) {
+					n1 = i;
+				}
+				cout << "dividend:\t" << dividend << ",\t0x" << bitset<32>(dividend) << ",\thighest 1: " << n1 << endl;
+				dividend >> 1;
+			}
+			for(int i = 0; i < 30; ++i) {
+				if(divisor & 0x01 == 1) {
+					n2 = i;
+				}
+				divisor >> 1;
+			}
+			//cout << "dividend:\t" << dividend << ",\t0x" << bitset<32>(dividend) << ",\thighest 1: " << n1 << endl;
+			//cout << "divisor:\t" << divisor << ",\t0x" << bitset<32>(divisor) << ",\thighest 1: " << n2 << endl;
+		}
+		return 1 << (n1 - n2);
 	}
 };
 
 int main(int argc, char **argv) {
 
-	vector<vector<char>> board = {
-		'5', '3', '.',		'.', '7', '.',		'.', '.', '.',
-		'6', '.', '.',		'1', '9', '5',		'.', '.', '.',
-		'.', '9', '8',		'.', '.', '.',		'.', '6', '.',
-
-		'8', '.', '.',		'.', '6', '.',		'.', '.', '3',
-		'4', '.', '.',		'8', '.', '3',		'.', '.', '1',
-		'7', '.', '.',		'.', '2', '.',		'.', '.', '6',
-
-		'.', '6', '.',		'.', '.', '.',		'2', '8', '.',
-		'.', '.', '.',		'4', '1', '9',		'.', '.', '5',
-		'.', '.', '.',		'.', '8', '.',		'.', '7', '9',
-	};
-	//printVector()
-
-
+	int dividend = 10;
+	int divisor = 3;
 
 	Solution *s = new Solution();
-	bool result = s->isValidSudoku(board);
-	cout << "[+] Result:\t" << result << endl;
+	int result = s->divide(dividend, divisor);
+	cout << "result: " << result << endl;
 
 	delete s;
 	return 0;

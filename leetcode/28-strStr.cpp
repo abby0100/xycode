@@ -53,36 +53,48 @@ void freeList(ListNode *head) {
 
 class Solution {
 public:
-	bool isValidSudoku(vector<vector<char>>& board) {
-		if(board.empty())
-			return true;
-		
+	int strStr(string haystack, string needle) {
+		if(haystack.empty() || needle.empty() || haystack.size() < needle.size()) {
+			return -1;
+		}
+
+		int haystack_len = haystack.size();
+		int needle_len = needle.size();
+		for(int i = 0; i < haystack_len; ++i) {
+			cout << __func__ << " i: " << i << endl;
+
+			if(haystack_len - i < needle_len) {
+				cout << " i: " << i << endl;
+				return -1;
+			}
+			for(int j = 0; j < needle_len; ++j) {
+				cout << __func__ << " j: " << j << endl;
+
+				if(haystack[i + j] != needle[j]) {
+					cout << " i: " << i << " j: " << j << endl;
+					break;
+				}
+				if(j == needle_len - 1) {
+					cout << " find, i: " << i << " j: " << j << endl;
+					return i;
+				}
+			}
+		}
+		return -1;
 	}
 };
 
 int main(int argc, char **argv) {
 
-	vector<vector<char>> board = {
-		'5', '3', '.',		'.', '7', '.',		'.', '.', '.',
-		'6', '.', '.',		'1', '9', '5',		'.', '.', '.',
-		'.', '9', '8',		'.', '.', '.',		'.', '6', '.',
-
-		'8', '.', '.',		'.', '6', '.',		'.', '.', '3',
-		'4', '.', '.',		'8', '.', '3',		'.', '.', '1',
-		'7', '.', '.',		'.', '2', '.',		'.', '.', '6',
-
-		'.', '6', '.',		'.', '.', '.',		'2', '8', '.',
-		'.', '.', '.',		'4', '1', '9',		'.', '.', '5',
-		'.', '.', '.',		'.', '8', '.',		'.', '7', '9',
-	};
-	//printVector()
-
-
+	string haystack("aaaaa");
+	string needle("aaa");
+	//string needle("bba");
 
 	Solution *s = new Solution();
-	bool result = s->isValidSudoku(board);
-	cout << "[+] Result:\t" << result << endl;
+	int result = s->strStr(haystack, needle);
+	cout << "Result: " << result << endl;
 
 	delete s;
+	//freeList(l1);
 	return 0;
 }

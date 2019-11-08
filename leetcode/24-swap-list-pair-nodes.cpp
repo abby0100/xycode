@@ -53,36 +53,56 @@ void freeList(ListNode *head) {
 
 class Solution {
 public:
-	bool isValidSudoku(vector<vector<char>>& board) {
-		if(board.empty())
-			return true;
-		
+	ListNode* swapPairs(ListNode* head) {
+		ListNode *l = head;
+		if(head == nullptr) {
+			cout << "not handle " << __func__ << endl;
+			return head;
+		} else {
+			cout << "handle " << __func__ << endl;
+		}
+		int temp = 0;
+		ListNode *p = head;
+		ListNode *q;
+		while(head) {
+			p = head;
+			head = head->next;
+			q = head;
+			if(p && q) {
+				temp = p->val;
+				p->val = q->val;
+				q->val = temp;
+			}
+			if(head)
+				head = head->next;
+		}
+		return l;
 	}
 };
 
 int main(int argc, char **argv) {
 
-	vector<vector<char>> board = {
-		'5', '3', '.',		'.', '7', '.',		'.', '.', '.',
-		'6', '.', '.',		'1', '9', '5',		'.', '.', '.',
-		'.', '9', '8',		'.', '.', '.',		'.', '6', '.',
-
-		'8', '.', '.',		'.', '6', '.',		'.', '.', '3',
-		'4', '.', '.',		'8', '.', '3',		'.', '.', '1',
-		'7', '.', '.',		'.', '2', '.',		'.', '.', '6',
-
-		'.', '6', '.',		'.', '.', '.',		'2', '8', '.',
-		'.', '.', '.',		'4', '1', '9',		'.', '.', '5',
-		'.', '.', '.',		'.', '8', '.',		'.', '7', '9',
-	};
-	//printVector()
-
-
+	ListNode *l;
+	if(l == nullptr) {
+		cout << "not handle " << __func__ << endl;
+		return -1;
+	} else {
+		cout << "handle " << __func__ << endl;
+		//cout << "val " << l->val << endl;
+	}
+//	ListNode *l1 = new ListNode(1);
+//	l1->next = new ListNode(2);
+//	l1->next->next = new ListNode(3);
+//	l1->next->next->next = new ListNode(4);
+//	printList(l1);
 
 	Solution *s = new Solution();
-	bool result = s->isValidSudoku(board);
-	cout << "[+] Result:\t" << result << endl;
+	ListNode* result = s->swapPairs(l);
+	//ListNode* result = s->swapPairs(l1);
+	printList(result);
 
 	delete s;
+	//freeList(l1);
+	freeList(result);
 	return 0;
 }

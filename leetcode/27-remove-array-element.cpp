@@ -53,36 +53,44 @@ void freeList(ListNode *head) {
 
 class Solution {
 public:
-	bool isValidSudoku(vector<vector<char>>& board) {
-		if(board.empty())
-			return true;
-		
+	int removeArrayElement(vector<int>& nums, int val) {
+		if(nums.empty()) {
+			return nums.size();
+		}
+		int n(nums.size());
+		int i(0);
+		int j(n-1);
+		while(i <= j) {
+			if(nums[i] == val) {
+				nums[i] = nums[j];
+				j--;
+			} else {
+				i++;
+			}
+		}
+		return j+1;
 	}
 };
 
 int main(int argc, char **argv) {
 
-	vector<vector<char>> board = {
-		'5', '3', '.',		'.', '7', '.',		'.', '.', '.',
-		'6', '.', '.',		'1', '9', '5',		'.', '.', '.',
-		'.', '9', '8',		'.', '.', '.',		'.', '6', '.',
-
-		'8', '.', '.',		'.', '6', '.',		'.', '.', '3',
-		'4', '.', '.',		'8', '.', '3',		'.', '.', '1',
-		'7', '.', '.',		'.', '2', '.',		'.', '.', '6',
-
-		'.', '6', '.',		'.', '.', '.',		'2', '8', '.',
-		'.', '.', '.',		'4', '1', '9',		'.', '.', '5',
-		'.', '.', '.',		'.', '8', '.',		'.', '7', '9',
-	};
-	//printVector()
-
-
+	vector<int> vec;
+	vec.push_back(0);
+	vec.push_back(1);
+	vec.push_back(2);
+	vec.push_back(2);
+	vec.push_back(3);
+	vec.push_back(0);
+	vec.push_back(4);
+	vec.push_back(2);
+	printVector(vec);
 
 	Solution *s = new Solution();
-	bool result = s->isValidSudoku(board);
-	cout << "[+] Result:\t" << result << endl;
+	int result = s->removeArrayElement(vec, 2);
+	cout << "Result: " << result << endl;
+	printVector(vec);
 
 	delete s;
+	//freeList(l1);
 	return 0;
 }
